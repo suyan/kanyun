@@ -79,7 +79,7 @@ def create_test_data(app, count=1, key="instance-00000001@pyw.novalocal"):
     # insert test data
     cfg = app.get_cfg('server')
     tool = NovaTools(app)
-    db = CassaDb('data', cfg['db_host'])
+    db = CassaDb('DATA', cfg['db_host'])
 
     for i in range(0, count):
         data = {key:

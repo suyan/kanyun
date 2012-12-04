@@ -20,8 +20,11 @@ import time
 import json
 import logging
 import traceback
-from collections import OrderedDict
-
+#from collections import OrderedDict
+try:
+   from collections import OrderedDict
+except ImportError:
+   from ordereddict import OrderedDict
 class HallBuffer():
     """
     example:

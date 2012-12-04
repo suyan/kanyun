@@ -73,7 +73,7 @@ if __name__ == '__main__':
     poller.register(socket, zmq.POLLIN)
 
     # data DB
-    db = CassaDb('data', cfg['db_host'])
+    db = CassaDb('DATA', cfg['db_host'])
 
     while True:
         try:

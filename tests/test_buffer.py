@@ -19,8 +19,12 @@
 import unittest
 import time
 import random
-from collections import OrderedDict
+#from collections import OrderedDict
 from kanyun.common.buffer import HallBuffer
+try:
+   from collections import OrderedDict
+except ImportError:
+   from ordereddict import OrderedDict
 
 class TestBuffer(unittest.TestCase):
 

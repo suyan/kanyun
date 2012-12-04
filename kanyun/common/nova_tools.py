@@ -21,7 +21,11 @@ import sys
 import time
 import ConfigParser
 import json
-from collections import OrderedDict
+#from collections import OrderedDict
+try:
+   from collections import OrderedDict
+except ImportError:
+   from ordereddict import OrderedDict
 from sqlalchemy import *
 #from sqlalchemy.orm import sessionmaker
 

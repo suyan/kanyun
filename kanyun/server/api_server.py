@@ -24,8 +24,11 @@ import traceback
 import ConfigParser
 import zmq
 from dateutil.parser import parse
-from collections import OrderedDict
-
+#from collections import OrderedDict
+try:
+   from collections import OrderedDict
+except ImportError:
+   from ordereddict import OrderedDict
 from nova import utils
 from kanyun.common.const import *
 from kanyun.common.buffer import HallBuffer
@@ -120,7 +123,7 @@ class ApiServer():
         
     def get_db(self):
         if self.db is None:
-            self.db = CassaDb('data', self.db_host)
+            self.db = CassaDb('DATA', self.db_host)
         return self.db
         
     def get_data(self, row_id, cf_str, scf_str, time_from=0, time_to=0):

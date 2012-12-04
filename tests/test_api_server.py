@@ -22,9 +22,14 @@ import sys
 import random
 import mox
 import pycassa
-from collections import OrderedDict
+#from collections import OrderedDict
 from kanyun.common.const import *
 from kanyun.server import api_server
+try:
+   from collections import OrderedDict
+except ImportError:
+   from ordereddict import OrderedDict
+
 
 class StatisticsTest(unittest.TestCase):
 
