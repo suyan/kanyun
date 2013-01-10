@@ -38,7 +38,7 @@ def show_result(rs):
     if rs is None:
         return
     print rs
-    rs = rs.setdefault("DATA", None)
+    rs = rs.setdefault("data", None)
     if rs is None or len(rs) == 0:
         return
     for k, i in rs.iteritems():
@@ -49,7 +49,7 @@ def show_result(rs):
 def show_data(rs, row_id, cf_str, scf_str):
     if rs is None:
         return
-    rs = rs.setdefault("DATA", None)
+    rs = rs.setdefault("data", None)
     if rs is None:
         return
 
@@ -61,7 +61,7 @@ def show_data(rs, row_id, cf_str, scf_str):
 def show_result2(rs, row_id, cf_str, scf_str):
     if rs is None:
         return
-    rs = rs.setdefault("DATA", None)
+    rs = rs.setdefault("data", None)
     if rs is None or rs.items is None:
         return
     rs = OrderedDict(sorted(rs.items(), key=lambda t: t[0]))
@@ -150,7 +150,7 @@ def main():
                                         'timestamp_to': time_to,
                                         }
                                     })
-            show_data(rs, row_id=row_id, cf_str=cf_str, scf_str=scf_str)
+            show_result2(rs, row_id=row_id, cf_str=cf_str, scf_str=scf_str)
     else:
         rs = apiclient.query_usage_report({
                                         'method': 'query_usage_report',
