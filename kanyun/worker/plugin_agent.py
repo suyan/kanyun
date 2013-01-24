@@ -132,6 +132,9 @@ class LibvirtMonitor(object):
         """
         (dom_run_state, dom_max_mem_kb, dom_memory_kb,
          dom_nr_virt_cpu, dom_cpu_time) = dom_conn.info()
+        mem_info = dom_conn.memoryStats()
+        dom_max_mem_kb = mem_info['actual']
+        dom_memory_kb = mem_info['rss']
         mem_free = dom_max_mem_kb - dom_memory_kb
         if not dom_run_state:
             # TODO(lzyeval): handle exception
@@ -143,7 +146,7 @@ class LibvirtMonitor(object):
         self.diffs[dom_id].update(dom_cpu_time)
         #%CPU = 100 * cpu_time_diff / (t * nr_cores * 10^9)
         #print "%d * %f / (%d * 1 * %d)" % (100.0, self.diffs[dom_id].get_diff(), self.diffs[dom_id].get_time_pass(), 1e9)
-        cpu = 100.0 * self.diffs[dom_id].get_diff() / (self.diffs[dom_id].get_time_pass() * 1 * 1e9)
+        cpu = 100.0 * self.diffs[dom_id].get_diff() / (self.diffs[dom_id].get_time_pass() * dom_nr_virt_cpu * 1e9)
         print "dom_id:",dom_id, 'cpu:', cpu, '%, cpu_time:', dom_cpu_time, "mem:", mem_free, "/", dom_max_mem_kb
         # NOTE(lzyeval): libvirt currently can only see total of all vcpu time
 #        return [('cpu', 'total', (timestamp, dom_cpu_time)),
